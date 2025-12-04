@@ -1,7 +1,7 @@
 #lang racket
 
 (define (load-raw-data path)
-  ;; I dont have a unix system to test this on but this should filter out both \r\n's if it's correct.
+  ;; I dont have a unix system to test this on but this should filter out both \r's and \n's if it's correct.
   (define data (file->string path))
   (define split-carriage (filter (lambda (x) (not (equal? "\r" x))) (string-split data "\r")))
   (filter (lambda (x) (not (equal? "\n" x))) (string-split (string-join split-carriage "") "\n")))
@@ -65,4 +65,5 @@
 (displayln (format "Test input Answer 2: ~a" test-password))
 (displayln (format "Part 1 answer: ~a" password-p1))
 (displayln (format "Part 2 answer: ~a" password-p2))
+
 
