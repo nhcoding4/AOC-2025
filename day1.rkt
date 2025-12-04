@@ -34,7 +34,7 @@
     (define movement (- to-move (* full-rotation rotations)))
     (define touch-point
       (cond
-        [(= 0 (modulo start full-rotation)) full-rotation]
+        [(zero? (modulo start full-rotation)) full-rotation]
         [(equal? operation -) (abs (- 0 start))]
         [else (- full-rotation start)]))
     (cond
@@ -42,23 +42,27 @@
       [else rotations]))
 
   (let*-values ([(_ result) (for/fold ([cur 50]
-                                       [clicks 0])
+                                       [sub-total 0])
                                       ([ins (in-list instructions)])
                               (define operation (first ins))
                               (define moves (last ins))
-                              (define added-clicks (get-hits cur moves operation))
+                              (define zero-hits (get-hits cur moves operation))
                               (values (modulo (operation cur moves) full-rotation)
-                                      (+ added-clicks clicks)))])
+                                      (+ sub-total zero-hits)))])
     result))
 
 (define path "./day1Input.txt")
 (define raw-data (load-raw-data path))
 (define instructions (raw->instructions raw-data))
+(define test-input (list "L68"  "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82"))
+(define test-instructions (raw->instructions test-input))
 
+(define test-password (find-password-p2 test-instructions))
 (define password-p1 (find-password-p1 instructions))
-(define passowrd-p2 (find-password-p2 instructions))
+(define password-p2 (find-password-p2 instructions))
 
 (displayln "AOC 2025 Day 1")
+(displayln (format "Test input Answer 2: ~a" test-password))
 (displayln (format "Part 1 answer: ~a" password-p1))
-(displayln (format "Part 2 answer: ~a" passowrd-p2))
+(displayln (format "Part 2 answer: ~a" password-p2))
 
