@@ -38,8 +38,7 @@
         [(equal? operation -) (abs (- 0 start))]
         [else (- full-rotation start)]))
     (cond
-      [(and (equal? operation -) (>= movement touch-point)) (add1 rotations)]
-      [(and (equal? operation +) (>= movement touch-point)) (add1 rotations)]
+      [(>= movement touch-point) (add1 rotations)]
       [else rotations]))
 
   (let*-values ([(_ result) (for/fold ([cur 50]
@@ -62,3 +61,4 @@
 (displayln "AOC 2025 Day 1")
 (displayln (format "Part 1 answer: ~a" password-p1))
 (displayln (format "Part 2 answer: ~a" passowrd-p2))
+
