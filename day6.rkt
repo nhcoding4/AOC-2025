@@ -72,8 +72,10 @@
         [else +])))
 
   (define raw-number-lines
-    (for/list ([row (in-list raw-numbers)])
-      (build-row (string->list row) (longest-seq row) (list))))
+    ((lambda ()
+       (define size (longest-seq (first raw-numbers)))
+       (for/list ([row (in-list raw-numbers)])
+         (build-row (string->list row) size (list))))))
 
   (define ungrouped-numbers
     (for/list ([i (in-range (length (first raw-number-lines)))])
