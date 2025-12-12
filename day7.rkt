@@ -28,7 +28,6 @@
   (define (traverse dataset)
     (define mark #\x)
     (define y-limit (sub1 (vector-length dataset)))
-    (define x-limit (vector-length (vector-ref dataset 0)))
     (define data (vector-copy dataset))
     (define start-position (get-start-position data))
 
@@ -50,9 +49,7 @@
 
 (define (part-2 dataset)
   (define (traverse dataset)
-    (define mark #\x)
     (define y-limit (sub1 (vector-length dataset)))
-    (define x-limit (vector-length (vector-ref dataset 0)))
     (define data (vector-copy dataset))
     (define start-position (get-start-position data))
 
@@ -88,3 +85,4 @@
 (displayln (format "Test Part 2 Answer: ~a" p2-test-answer))
 
 ;; -------------------------------------------------------------------------------------------------
+
