@@ -25,10 +25,9 @@
 ;; -------------------------------------------------------------------------------------------------
 
 (define (part-1 dataset)
-  (define (traverse dataset)
+  (define (traverse data)
     (define mark #\x)
     (define y-limit (sub1 (vector-length dataset)))
-    (define data (vector-copy dataset))
     (define start-position (get-start-position data))
 
     (define (iter x y)
@@ -48,9 +47,8 @@
 ;; -------------------------------------------------------------------------------------------------
 
 (define (part-2 dataset)
-  (define (traverse dataset)
+  (define (traverse data)
     (define y-limit (sub1 (vector-length dataset)))
-    (define data (vector-copy dataset))
     (define start-position (get-start-position data))
 
     (define (iter x y)
